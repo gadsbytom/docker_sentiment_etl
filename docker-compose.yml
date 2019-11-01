@@ -9,7 +9,7 @@ services:
   mongodb:
     image: mongo
     ports:
-    - "27019:27017"
+    - "27017:27017"
 
   etl_job:
     build: etl_job/
@@ -20,4 +20,4 @@ services:
   postgresdb:
     image: postgres
     ports:
-    - "5432:5432"
+    - "5431:5431"
