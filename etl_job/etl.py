@@ -13,7 +13,7 @@ conn = 'postgres://postgres@postgresdb:5432/postgres'
 engine = create_engine(conn4)
 engine.execute('''CREATE TABLE IF NOT EXISTS tweets (
     tweets TEXT,
-    sentiment FLOAT(8)
+    sentiment FLOAT(16)
 );
 ''')
 
