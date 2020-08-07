@@ -8,9 +8,18 @@ client = pymongo.MongoClient("mongodb")
 db = client.tweets
 collection = db.tweetcollection
 
-conn = 'postgres://postgres@postgresdb:5432/postgres'
+# conn = 'postgres://postgres@postgresdb:5432/postgres'
+#
+# engine = create_engine(conn)
 
-engine = create_engine(conn4)
+engine = None
+while not engine:
+    try:
+        engine = create_engine("postgres://postgres:1234@postgresdb:5432")
+    except:
+        continue
+
+
 engine.execute('''CREATE TABLE IF NOT EXISTS tweets (
     tweets TEXT,
     sentiment FLOAT(16)
@@ -18,9 +27,9 @@ engine.execute('''CREATE TABLE IF NOT EXISTS tweets (
 ''')
 
 def get_tweets():
-    tweets = list(collection.find())
+    tweet = list(collection.find())
     if tweet:
-        return tweets[0]
+        return tweet[0]
     return ""
 
 def calc_sentiment(tweet):
@@ -31,7 +40,7 @@ def calc_sentiment(tweet):
     return 0.0
 
 def write_to_postgres(tweet, sentiment):
-    engine.execute(f"""INSERT INTO tweets VALUES ('{tweet["text"]}', {sentiment});""")
+    engine.execute(f"""INSERT INTO tweets VALUES ('{tweet}', {sentiment});""")
 
 while True:
     tweet = get_tweets()
