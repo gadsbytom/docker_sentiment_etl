@@ -46,4 +46,4 @@ while True:
     tweet = get_tweets()
     sent = calc_sentiment(tweet)
     write_to_postgres(tweet, sent)
-    time.sleep(10)
+    time.sleep(5)
