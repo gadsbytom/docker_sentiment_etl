@@ -20,7 +20,7 @@ services:
   postgresdb:
     image: postgres:9.6
     environment:
-    - POSTGRES_PASSWORD=1234
+    - POSTGRES_PASSWORD=${PG_PASSWORD}
     expose:
     - "5555"
     ports:
