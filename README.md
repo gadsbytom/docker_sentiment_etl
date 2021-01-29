@@ -30,6 +30,7 @@
 ---
 ### How to Use:
 
+* Ensure Docker is installed where the code is to be run
 * Install the file requirements using the python dependencies listed herein:
 * Clone the repository here
 * Navigate to the root directory
