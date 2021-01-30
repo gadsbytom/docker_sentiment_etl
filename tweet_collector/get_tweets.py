@@ -2,10 +2,10 @@ import json
 import tweepy
 import logging
 import time
-from config import config
 import pymongo
+import os
 
-KEYWORDS = ['data'] #["python", "datascience", "scikit", "keras"]
+KEYWORDS = ['aws'] 
 
 conn = 'mongodb'
 
@@ -13,15 +13,16 @@ conn = 'mongodb'
 client = pymongo.MongoClient(conn)
 db = client.tweets
 
-consumer_key = config['consumer_key']
-consumer_key_secret = config['consumer_key_secret']
-access_token = config['access_token']
-access_token_secret = config['access_token_secret']
+consumer_key = os.getenv('TWITTER_CONSUMER_API_KEY')
+logging.critical(consumer_key)
+consumer_key_secret = os.getenv('TWITTER_CONSUMER_API_SECRET')
+logging.critical(consumer_key_secret)
+access_token = os.getenv('TWITTER_ACCESS_TOKEN')
+logging.critical(access_token)
+access_token_secret = os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
+logging.critical(access_token_secret)
 auth = tweepy.OAuthHandler(consumer_key, consumer_key_secret)
 auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth, wait_on_rate_limit=True)
-user = api.me()
-logging.critical("connection established with user: " + user.name)
 
 
 class StreamListener(tweepy.StreamListener):
@@ -103,5 +104,6 @@ def show_text(tweet):
 
 if __name__ == '__main__':
     while True:
-        get_tweets(5, show_text)
-        #time.sleep(30)
+        print('bla')
+        #get_tweets(5, show_text)
+        time.sleep(30)
