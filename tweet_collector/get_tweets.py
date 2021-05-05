@@ -5,14 +5,12 @@ import time
 import pymongo
 import os
 
+
+# establish connnection variables
 KEYWORDS = ['aws'] 
-
 conn = 'mongodb'
-
-
 client = pymongo.MongoClient(conn)
 db = client.tweets
-
 consumer_key = os.getenv('TWITTER_CONSUMER_API_KEY')
 logging.critical(consumer_key)
 consumer_key_secret = os.getenv('TWITTER_CONSUMER_API_SECRET')
@@ -26,6 +24,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 
 class StreamListener(tweepy.StreamListener):
+    """Stream tweets, transform tweets, insert tweets into Mongo"""
     def __init__(self, limit, callback):
         super().__init__()
         self.limit = limit
@@ -93,17 +92,18 @@ class StreamListener(tweepy.StreamListener):
 
 
 def get_tweets(limit, callback):
+    """Instantiate the listener, filter results by keywords"""
     stream_listener = StreamListener(limit, callback)
     stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
     stream.filter(track=KEYWORDS, languages=['en'])
 
 def show_text(tweet):
+    """log tweets to stdout and insert tweets to mongo"""
     logging.critical('\n\nNEW TWEET: ' + tweet['text'])
     db.collections.data_science.insert_one(tweet)
 
 
 if __name__ == '__main__':
     while True:
-        print('bla')
-        #get_tweets(5, show_text)
+        get_tweets(5, show_text)
         time.sleep(30)
