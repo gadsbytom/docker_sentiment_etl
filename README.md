@@ -30,8 +30,11 @@
 ---
 ### How to Use:
 
-* Ensure Docker is installed where the code is to be run
-* Install the file requirements using the python dependencies listed herein:
-* Clone the repository here
+* Ensure Docker is installed - `https://docs.docker.com/get-docker/`
+* Get Twitter Developer API creds, see [here](https://jannah.helpscoutdocs.com/article/161-register-twitter-app) for a guide on how - `https://developer.twitter.com`
+* Setup the necessary env variables, see [here](https://medium.com/@himanshuagarwal1395/setting-up-environment-variables-in-macos-sierra-f5978369b255) for how to in macOS - `API_KEY, API_SECRET, POSTGRES_USER, POSTGRES_PASSWORD`
+* Clone the repository - `git clone https://github.com/gadsbytom/docker_sentiment_etl.git`
+* Install the file requirements - `pip install -r requirements.txt`
+* Ensure env variables for 
 * Navigate to the root directory
 * In the terminal, run `docker-compose build`, then `docker-compose up`.

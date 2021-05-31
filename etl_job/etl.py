@@ -5,15 +5,17 @@ import time
 import pymongo
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from sqlalchemy import create_engine
+import logging
 
 
 # get PG environment variables
 POSTGRES_USER = os.getenv('POSTGRES_USER')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')  
-HOST = 'postgresdb'
+HOST = 'postgres_container'
 DB = 'postgres' 
+PORT = '5432'
 
-# wait for a connection to mongodb then proceed
+# mongodb
 client = None
 while not client:
     try:
@@ -24,17 +26,17 @@ while not client:
         time.sleep(1)
         continue
 
-# wait for a connection to postgres then proceed
+# postgres
 engine = None
 while not engine:
     try:
-        connection_string = f"postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{HOST}/{DB}"
-        engine = create_engine(connection_string,echo=True)
+        URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{HOST}:{PORT}/{DB}"
+        engine = create_engine(URI,echo=True)
     except:
         time.sleep(1)
         continue
 
-#create our tweet+sentiment table
+#create tweet+sentiment table
 engine.execute('''CREATE TABLE IF NOT EXISTS tweets (
     tweets TEXT,
     sentiment FLOAT(16)
