@@ -35,6 +35,5 @@
 * Setup the necessary env variables, see [here](https://medium.com/@himanshuagarwal1395/setting-up-environment-variables-in-macos-sierra-f5978369b255) for how to in macOS - `API_KEY, API_SECRET, POSTGRES_USER, POSTGRES_PASSWORD`
 * Clone the repository - `git clone https://github.com/gadsbytom/docker_sentiment_etl.git`
 * Install the file requirements - `pip install -r requirements.txt`
-* Ensure env variables for 
 * Navigate to the root directory
 * In the terminal, run `docker-compose build`, then `docker-compose up`.
