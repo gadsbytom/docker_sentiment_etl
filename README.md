@@ -12,7 +12,7 @@
 ---
 ### Resources
 
-* Root - Docker Compose folder. Create
+* Root - Docker Compose Root directory
 
     * docker_compose.yml - A yaml file describing the containers required for the project to run, as well as their dependenciesm
 
