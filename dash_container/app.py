@@ -3,12 +3,13 @@
 
 import dash 
 # import dash_core_components as dcc
-# import dash_html_components as html
+import dash_html_components as html
 # from dash.dependencies import Input, Output
 
 import time
 from sqlalchemy import create_engine
 import os
+import logging
 
 
 #postgres env vars
@@ -30,7 +31,9 @@ while not engine:
         time.sleep(1)
         continue
 
-
+query = 'select * from tweets limit 5';
+results = engine.execute(query)
+logging.critical([x for x in results])
 
 #Dash
 #instantiating the app
