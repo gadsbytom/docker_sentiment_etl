@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 import logging
 
 
-# get PG environment variables
+#postgres env vars
 POSTGRES_USER = os.getenv('POSTGRES_USER')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')  
 HOST = 'postgres_container'

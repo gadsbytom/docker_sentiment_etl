@@ -11,13 +11,10 @@ client = pymongo.MongoClient(conn)
 db = client.tweets
 API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
-logging.critical(API_KEY)
-logging.critical(API_SECRET)
 
 
 def authenticate():
     """function for twitter authentication"""
-
     auth = OAuthHandler(API_KEY, API_SECRET)
     return auth
 
@@ -38,7 +35,6 @@ if __name__ == '__main__':
             text = status.full_text
 
             # take extended tweets into account
-            # TODO: CHECK
             if 'extended_tweet' in dir(status):
                 text =  status.extended_tweet.full_text
             if 'retweeted_status' in dir(status):
