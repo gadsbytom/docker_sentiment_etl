@@ -9,6 +9,8 @@
 
 * Carries out sentiment analysis on a sample of the tweets, and stores the transformed data into a Postgres database
 
+* `Visualisation` - the analysis will be visualised in an analytics platform, whose construction is underway
+
 ---
 ### Resources
 
